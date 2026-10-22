@@ -8,7 +8,7 @@ A payroll processing web application for a small business. Handles daily work ho
 
 - [App overview](https://drive.google.com/file/d/1KZZIPlQP6IAp817E0gA-rP0nmaL1tdoY/view?usp=sharing) (2:30)
 - [Generating PDF in batches](https://drive.google.com/file/d/1-kTAGNA82oHG1_XSF8gfEW4h_rcHP6gM/view?usp=sharing) (1:26)
-- [Generating PDF](https://drive.google.com/file/d/1-kTAGNA82oHG1_XSF8gfEW4h_rcHP6gM/view?usp=sharing) (1:50)
+- [Generating PDF](https://drive.google.com/file/d/1Mmg0H2FeHKS1qhoLz2LX3SbIMMGFD2qk/view?usp=sharing) (1:50)
 
 ---
 
