@@ -1,0 +1,33 @@
+.loading-bar {
+  width: 2rem;
+  height: 0.85rem;
+
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid var(--color-gray-200);
+  border-radius: 3px;
+
+  margin: 0 1.2063rem;
+}
+
+.loading-bar__indicator {
+  width: 0.3rem;
+  height: 1.25rem;
+
+  position: absolute;
+
+  background-color: var(--color-gray-200);
+  top: -0.125rem;
+
+  animation: moveBackAndForth 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes moveBackAndForth {
+  0% {
+    transform: translateX(-0.1rem);
+  }
+  100% {
+    transform: translateX(1.65rem);
+  }
+}

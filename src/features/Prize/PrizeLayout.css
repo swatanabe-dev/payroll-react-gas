@@ -1,0 +1,6 @@
+.prize-layout {
+  min-height: 0; /* NEVER EVER FORGET THIS!!! */
+  display: flex;
+  flex-direction: column;
+  gap: 2.125rem;
+}

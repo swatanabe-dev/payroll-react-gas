@@ -1,0 +1,23 @@
+.user-layout {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-areas:
+    "info summary"
+    "info savings";
+  grid-template-columns: 19.5rem minmax(auto, 1fr);
+  grid-template-rows: minmax(0, max-content) minmax(0, 31.25rem);
+  gap: 1.875rem;
+
+  transform: translateY(-0.5rem);
+
+  .user-layout__info {
+    grid-area: info;
+  }
+  .user-layout__work-summary {
+    grid-area: summary;
+  }
+  .user-layout__savings {
+    grid-area: savings;
+  }
+}

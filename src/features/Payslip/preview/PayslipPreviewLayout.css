@@ -1,0 +1,27 @@
+.payslip-preview-layout {
+  min-height: 0;
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  .payslip-preview-layout__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .payslip-preview-layout__actions-btns {
+      display: flex;
+      gap: 1.25rem;
+    }
+  }
+  .payslip-preview-layout__divider {
+    border: none;
+    height: 0.1875rem;
+    background-color: var(--color-gray-200);
+  }
+  .payslip-preview-layout__scroll-container {
+    height: 100%;
+    overflow: scroll;
+  }
+}

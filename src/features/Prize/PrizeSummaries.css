@@ -1,0 +1,20 @@
+.prize-summaries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .prize-summaries__header {
+    display: flex;
+    gap: 0.5rem;
+
+    .prize-summaries__as-of {
+      color: var(--sub-font-color);
+    }
+  }
+
+  .prize-summaries__summaries {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 3rem;
+  }
+}

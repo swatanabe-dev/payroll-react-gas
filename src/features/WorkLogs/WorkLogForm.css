@@ -1,0 +1,71 @@
+.worklog-form__container {
+  max-height: 35rem;
+  position: relative;
+  background-color: var(--main-background-color);
+  border-radius: 5px;
+  overflow-y: scroll;
+
+  .worklog-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    border: 1px solid var(--main-border-color);
+
+    padding: 2.5rem 4rem;
+
+    .worklog-form__adjustments-header {
+      color: var(--main-font-color);
+      background-color: transparent;
+
+      .worklog-form__adjustments-add-btn {
+        color: var(--main-font-color);
+        background-color: transparent;
+
+        transition: all 0.3s ease;
+
+        &:hover,
+        &:focus {
+          color: var(--color-blue-300);
+          font-weight: bold;
+          transform: translateX(0.3rem);
+        }
+      }
+    }
+
+    .worklog-form__adjustments-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      border: 1px solid var(--border-color-light);
+      border-radius: var(--border-radius);
+      padding: 0.6rem;
+
+      .worklog-form__adjustments-row-title {
+        display: flex;
+        justify-content: space-between;
+
+        .worklog-form__adjustments-remove-btn {
+          color: var(--main-font-color);
+          background-color: transparent;
+
+          transition: all 0.3s ease;
+
+          &:hover,
+          &:focus {
+            color: var(--color-red-500);
+            font-weight: bold;
+            transform: translateX(-0.15rem);
+          }
+        }
+      }
+    }
+  }
+
+  .worklog-form__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.25rem;
+  }
+}

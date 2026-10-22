@@ -1,0 +1,28 @@
+.action-confirmation {
+  width: max-content;
+  height: max-content;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  background-color: var(--main-background-color);
+  border-radius: 5px;
+
+  padding: 2rem;
+  h3 {
+    font-weight: bold;
+  }
+  .confirmation-message {
+    span {
+      font-weight: bold;
+      color: var(--color-red-500);
+    }
+  }
+
+  .confirm-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.75rem;
+  }
+}

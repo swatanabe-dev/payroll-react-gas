@@ -1,0 +1,25 @@
+.checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  .checkbox__input {
+    width: 1.38rem;
+    height: 1.38rem;
+
+    &:checked {
+      position: relative;
+
+      background-color: var(--color-green-400);
+
+      &::after {
+        color: #ffff;
+        content: "✔";
+        position: absolute;
+        top: -0.0625rem;
+        left: 0.2813rem;
+      }
+    }
+  }
+}

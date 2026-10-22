@@ -1,0 +1,201 @@
+:root {
+  --main-font-color: var(--color-gray-900);
+  --sub-font-color: var(--color-gray-400);
+  --main-background-color: #fbfefc;
+  --sub-background-color: #f6f9f7;
+  --border-color-light: #eae4e4;
+
+  /* Blue pallette */
+  --color-blue-30: #fcfeff;
+  --color-blue-50: #f3f9ff;
+  --color-blue-100: #eaf5ff;
+  --color-blue-300: #06a2ed;
+  --color-blue-500: #0466b7;
+
+  /* Gray pallette */
+  --color-gray-50: #e2e2e2;
+  --color-gray-100: #cdd3d1;
+  --color-gray-200: #9ca19f;
+  --color-gray-300: #747775;
+  --color-gray-400: #363837;
+  --color-gray-900: #070707;
+
+  /* Pink */
+  --color-red-50: #ffebf4;
+  --color-red-500: #e3046e;
+  --color-red-600: #cc0766;
+  /* Orange */
+
+  --color-orange-200: #ffccaa;
+  --color-orange-500: #f59206;
+
+  /* Green */
+  --color-green-50: #f9ffed;
+  --color-green-300: #cdee80;
+  --color-green-400: #a9ce54;
+  --color-green-500: #90c21e;
+
+  /* ---grid setups--- */
+  --worklogs-grid-columns: repeat(6, 1fr);
+  --grid-padding: 0.6875rem 1rem;
+  --users-grid-columns: repeat(5, minmax(0, 1fr));
+
+  --table-scroll-bottom-shadow: 0px 5px 7px -3px rgba(198, 198, 198, 0.4);
+  --table-scroll-top-shadow: 0px -5px 7px -3px rgba(198, 198, 198, 0.4);
+  --table-scroll-left-shadow: -7px 0px 7px -7px rgba(198, 198, 198, 0.4);
+  --table-scroll-right-shadow: 7px 0px 7px -7px rgba(198, 198, 198, 0.4);
+
+  /* MenuLink > .horizontal-nav used in the Settings component */
+  --hr-nav-tab-width: 9.5rem;
+  --hr-nav-tab-height: 2.5rem;
+
+  /* Border radius setups */
+  --border-radius: 5px;
+  --border-radius-round: 24px;
+
+  font-family: Inter, system-ui, Avenir, sans-serif;
+  font-weight: 400;
+  color: var(--main-font-color);
+  color-scheme: light dark;
+  background-color: var(--main-background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: grid;
+  justify-items: center;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  /* The following are all to
+  hide scrollbar by default */
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+
+    background: transparent;
+  }
+  /* Scrollbar handle */
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+  }
+  &:hover::-webkit-scrollbar {
+    scrollbar-gutter: stable both-edges;
+  }
+  /* Show scrollbar on hover */
+  &:hover::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  /* Darker on hover */
+  &:hover::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* min-height: 100vh; */
+  height: 100vh;
+  font-size: 0.875rem;
+}
+
+button {
+  font-family: inherit;
+  border: 1px solid transparent;
+
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+*:disabled {
+  cursor: not-allowed;
+}
+
+select,
+input {
+  width: 100%;
+
+  font-family: inherit;
+  color: var(--main-font-color);
+  font-size: 0.875rem;
+  background-color: transparent;
+
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  border: 1px solid var(--color-gray-50);
+  border-radius: 5px;
+
+  cursor: pointer;
+  padding: 0.625rem 0 0.625rem 1rem;
+}
+
+select:disabled,
+input:disabled {
+  color: var(--color-gray-200);
+}
+
+input:focus,
+button:focus,
+textarea:focus,
+select:focus {
+  outline: 1px solid var(--color-blue-500);
+  outline-offset: 1px;
+}
+
+/* Hides spin button when input type=number */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield; /* Standard property */
+}
+
+img {
+  max-width: 100%;
+}
+
+.loading-container {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--sub-background-color);
+
+  border: 1px solid var(--border-color-light);
+  border-radius: var(--border-radius);
+
+  padding: auto;
+
+  &.full-screen {
+    width: 16rem;
+    height: 9rem;
+
+    box-shadow: 0px 0px 15px 5px rgba(174, 177, 176, 0.87);
+  }
+}

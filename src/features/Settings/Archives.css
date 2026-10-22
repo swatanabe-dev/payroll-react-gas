@@ -1,0 +1,70 @@
+.archives {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.0625rem;
+
+  .archives__header-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    .archives__descriptions {
+      max-width: 53.125rem;
+      overflow-wrap: break-word;
+      line-height: 1.8;
+    }
+    .archives__reminder-section {
+      display: flex;
+      flex-direction: column;
+
+      .archives__reminder-message--warning {
+        color: var(--color-orange-500);
+        font-weight: bold;
+      }
+      .archives__reminder-message--complete {
+        color: var(--color-green-500);
+        font-weight: bold;
+      }
+      .archives__reminder-message--info {
+        font-weight: bold;
+        padding: 1rem 0;
+      }
+
+      .archives__archiving-buttons {
+        display: flex;
+        gap: 1.5rem;
+
+        padding: 2.2rem 0;
+      }
+    }
+  }
+
+  .archives__table-container {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.archives__status {
+  color: #ffff;
+  font-weight: bold;
+
+  border-radius: var(--border-radius-round);
+
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+
+  padding: 0.5rem 1rem;
+  &.status--warning {
+    background-color: var(--color-red-500);
+  }
+  &.status--info {
+    background-color: var(--color-orange-500);
+  }
+  &.status--success {
+    background-color: var(--color-green-500);
+  }
+}

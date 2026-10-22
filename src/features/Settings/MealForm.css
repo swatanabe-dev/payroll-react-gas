@@ -1,0 +1,66 @@
+.meal-form__container {
+  min-height: 0;
+
+  font-size: 0.875rem;
+  color: var(--sub-font-color);
+  line-height: 1.8;
+
+  width: calc(var(--hr-nav-tab-width) * 2);
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  padding: 0.5rem 1rem;
+
+  .meal-form__descriptions {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .meal-form {
+    max-height: 45vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    overflow-y: scroll;
+
+    padding: 0.5rem;
+
+    /* Hide scrollbar by default */
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+      height: 0.5rem;
+
+      background: transparent;
+    }
+    /* Scrollbar handle */
+    &::-webkit-scrollbar-thumb {
+      background: transparent;
+      border-radius: 4px;
+    }
+    &:hover::-webkit-scrollbar {
+      scrollbar-gutter: stable both-edges;
+    }
+    /* Show scrollbar on hover */
+    &:hover::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.3);
+    }
+    /* Darker on hover */
+    &:hover::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .meal-form__input-row {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  .meal-form.on-hover-shadow-top {
+    &:hover {
+      box-shadow: inset 0 3px 1px -2px rgb(191 197 195/ 30%);
+    }
+  }
+}

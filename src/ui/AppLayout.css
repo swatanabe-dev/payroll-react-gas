@@ -1,0 +1,53 @@
+.app-layout {
+  width: clamp(60rem, 96%, 80rem);
+  height: 100vh; /*Pushes down the Footer to the bottom of viewpoint*/
+
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar contents"
+    "footer footer";
+  grid-template-columns: 12.5rem 1fr;
+  grid-template-rows: 3.125rem minmax(0, 1fr) 3.125rem;
+
+  padding: 0 1rem;
+
+  .main-contents {
+    min-height: 0;
+    min-width: 0; /* This is to fix the problem daysworked-table-content overflows horizontally.*/
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    padding: 1.25rem 0;
+
+    .outlet-container {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+
+      gap: 1.5rem;
+    }
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1500;
+  grid-area: header;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.main-contents {
+  grid-area: contents;
+}
+
+.footer {
+  grid-area: footer;
+  z-index: 1500;
+}

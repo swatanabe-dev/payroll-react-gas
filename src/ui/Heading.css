@@ -1,0 +1,25 @@
+.heading-1 {
+  font-size: 1.25rem;
+}
+.heading-2 {
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.heading-3 {
+  font-size: 0.875rem;
+  font-weight: normal;
+  color: var(--main-font-color);
+}
+
+.bold-font {
+  font-weight: bold;
+}
+
+.customNameStyle {
+  color: #ffffff;
+}
+
+.font-color-red {
+  color: var(--color-red-500);
+}

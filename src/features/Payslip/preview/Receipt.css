@@ -1,0 +1,114 @@
+.receipt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.94rem;
+
+  .receipt__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    .receipt__ref-number {
+      color: var(--color-gray-300);
+    }
+  }
+
+  .receipt__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.94rem;
+
+    h2.receipt__suffix {
+      color: var(--sub-font-color);
+      padding-left: 0.54rem 3.24rem;
+    }
+
+    .receipt__amount-stamp {
+      display: flex;
+      gap: 0.94rem;
+
+      .receipt__amount-container {
+        width: 26.46rem;
+        display: flex;
+        align-items: center;
+
+        border: 1.5px solid var(--color-gray-900);
+        border-radius: var(--border-radius);
+
+        .receipt__amount-label {
+          font-size: 1.25rem;
+          font-weight: bold;
+          border-right: 1.5px solid var(--color-gray-900);
+
+          padding: 0.54rem 1.35rem;
+        }
+
+        .receipt__amount {
+          font-size: 1.5rem;
+          font-weight: bold;
+          display: flex;
+          align-items: baseline;
+          margin: 0 auto;
+
+          .receipt__amount-symbol,
+          .receipt__amount-unit {
+            color: var(--sub-font-color);
+            font-size: 1rem;
+            font-weight: normal;
+          }
+        }
+      }
+      .receipt__stamp {
+        border: 1px solid var(--color-gray-300);
+        border-radius: var(--border-radius);
+        padding: 1rem 0.45rem;
+      }
+    }
+  }
+
+  .receipt__footer {
+    display: flex;
+    justify-content: space-between;
+    .receipt__texts {
+      font-size: 1.1rem;
+      line-height: 2;
+
+      .receipt__memo {
+        display: flex;
+        gap: 0.94rem;
+      }
+    }
+
+    .receipt-issuer {
+      display: flex;
+      flex-direction: column;
+
+      .receipt-issuer__company {
+        display: flex;
+        gap: 0.27rem;
+        padding-bottom: 0.125rem;
+
+        .receipt-issuer__company-name {
+          font-size: 1rem;
+        }
+        .receipt-issuer__logo-frame {
+          width: 1.5rem;
+          .receipt-issuer__company-logo {
+            width: 100%;
+          }
+        }
+      }
+
+      .receipt-issuer__address {
+        white-space: pre-line;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+.receipt-section-line {
+  border: none;
+  height: 1px;
+  border-top: 1px dashed var(--color-gray-200);
+}

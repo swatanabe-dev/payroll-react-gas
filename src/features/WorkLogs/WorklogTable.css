@@ -1,0 +1,18 @@
+.worklogs-table-operations {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.worklogs-table {
+  min-height: 0; /* This prevents flex issues that prevent it from shrinking*/
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    .pagination,
+    .table-footer {
+      box-shadow: var(--table-scroll-top-shadow);
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.prize-table {
+  min-height: 0; /* NEVER EVER FORGET THIS!!! */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .prize-table__header {
+    display: flex;
+    gap: 0.5rem;
+
+    .prize-table__as-of {
+      color: var(--sub-font-color);
+    }
+  }
+
+  &:hover {
+    .pagination,
+    .table-footer {
+      box-shadow: var(--table-scroll-top-shadow);
+    }
+  }
+}

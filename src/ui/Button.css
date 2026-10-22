@@ -1,0 +1,174 @@
+/* buttonStyle */
+.primary {
+  font-weight: bold;
+  color: var(--color-blue-50);
+
+  background-color: var(--color-blue-500);
+  border: 1px solid var(--color-blue-500);
+
+  transition: color background-color border 0.3s ease;
+
+  &:hover,
+  &:focus {
+    color: #ffff;
+    background-color: var(--color-blue-300);
+    border: 1px solid var(--color-blue-300);
+    outline: 1px solid var(--color-blue-500);
+    outline-offset: 1px;
+  }
+}
+.primary--outlined {
+  font-weight: bold;
+  color: var(--color-blue-500);
+
+  background-color: transparent;
+
+  border: 1px solid var(--color-blue-500);
+
+  transition: all background-color border 0.3s ease;
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-blue-50);
+    outline: 1px solid var(--color-blue-500);
+    outline-offset: 1px;
+  }
+}
+
+.secondary {
+  color: var(--color-gray-400);
+
+  background-color: transparent;
+  border: 1px solid var(--color-gray-300);
+
+  transition: all background-color border 0.3s ease;
+
+  &:hover,
+  &:focus {
+    font-weight: bold;
+
+    background-color: var(--color-blue-30);
+    outline: 1px solid var(--color-gray-400);
+    outline-offset: 1px;
+  }
+}
+
+.confirm {
+  font-weight: bold;
+  color: var(--color-green-50);
+
+  background-color: var(--color-green-500);
+  border: 1px solid var(--color-green-500);
+
+  transition: color background-color border 0.3s ease;
+
+  &:hover,
+  &:focus {
+    color: #ffff;
+    background-color: var(--color-green-400);
+    border: 1px solid var(--color-green-300);
+    outline: 1px solid var(--color-green-500);
+    outline-offset: 1px;
+  }
+}
+
+.confirm--outlined {
+  color: var(--color-green-500);
+  background-color: transparent;
+
+  border: 1px solid var(--color-green-500);
+
+  transition: all background-color border 0.3s ease;
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-green-50);
+    outline: 1px solid var(--color-green-500);
+    outline-offset: 1px;
+  }
+}
+
+.no-outline {
+  color: var(--color-gray-400);
+
+  background-color: transparent;
+
+  transition: font-weight 0.3s ease;
+
+  &:hover,
+  &:focus {
+    font-weight: bold;
+
+    /* outline: 1px solid var(--color-gray-400);
+    outline-offset: 1px; */
+  }
+}
+
+.delete {
+  color: var(--color-red-50);
+  background-color: var(--color-red-500);
+  border: 1px solid var(--color-red-500);
+
+  transition: all border 0.3s ease;
+
+  &:hover,
+  &:focus {
+    font-weight: bold;
+    color: #ffff;
+    background-color: var(--color-red-600);
+    outline: 1px solid var(--color-red-500);
+    outline-offset: 1px;
+  }
+}
+
+.delete--outlined {
+  color: var(--color-gray-200);
+
+  background-color: var(--color--50);
+  border: 1px solid var(--color-gray-100);
+
+  transition: all border 0.3s ease;
+
+  &:hover,
+  &:focus {
+    font-weight: bold;
+    color: var(--color-red-500);
+    border: 1px solid var(--color-red-500);
+    outline: 1px solid var(--color-red-500);
+    outline-offset: 1px;
+  }
+}
+
+/* buttonSize: */
+.btn--lg {
+  font-size: 1rem;
+  padding: 0.625rem 3rem;
+  flex-shrink: 0;
+}
+
+.btn--md {
+  padding: 0.625rem 1.5rem;
+  flex-shrink: 0;
+}
+
+.btn--sm {
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+
+  flex-shrink: 0;
+}
+.btn--close {
+  font-weight: bold;
+  padding: 0.5rem 0.76rem;
+
+  flex-shrink: 0;
+}
+
+/* buttonRadius */
+.round {
+  border-radius: var(--border-radius-round);
+}
+
+.square {
+  border-radius: var(--border-radius);
+}

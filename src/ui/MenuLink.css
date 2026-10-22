@@ -1,0 +1,117 @@
+.vertical-nav {
+  list-style: none;
+  a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+
+    border-left: 3px solid transparent;
+    padding-left: 5px;
+    transition: all 0.3s;
+
+    &:link,
+    &:visited {
+      color: var(--sub-font-color);
+    }
+
+    /* This works because react-router places the active class on the active NavLink */
+    &:hover {
+      border-left: 3px solid var(--color-orange-200);
+    }
+    &:active,
+    &.active:link,
+    &.active:visited {
+      border-left: 3px solid var(--color-orange-500);
+    }
+
+    .link-icon {
+      width: 1rem;
+    }
+  }
+}
+
+.horizontal-nav {
+  /* --hr-nav-tab-width: 9.5rem;
+  --hr-nav-tab-height: 2.5rem; */
+
+  width: var(--hr-nav-tab-width);
+  height: var(--hr-nav-tab-height);
+
+  list-style: none;
+
+  transform: translateY(0.405rem);
+  a {
+    position: relative;
+
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    border: 1px solid;
+    border-color: transparent transparent var(--color-gray-100) transparent;
+    border-top-right-radius: 5px;
+
+    padding: 0.5rem;
+
+    transition: all 0.125s ease-in;
+
+    &:link,
+    &:visited {
+      color: var(--sub-font-color);
+    }
+
+    &:hover {
+      border-color: var(--color-gray-50) transparent var(--color-gray-100)
+        transparent;
+      border-top-right-radius: 0px;
+      border-top-left-radius: 0px;
+    }
+
+    &:active,
+    &.active:link,
+    &.active:visited {
+      font-weight: bold;
+      border: 1px solid;
+      border-color: var(--color-gray-100) var(--color-gray-100)
+        var(--main-background-color) var(--color-gray-100);
+
+      border-top-right-radius: 5px;
+      border-top-left-radius: 2px;
+
+      .link-icon {
+        width: 1rem;
+      }
+    }
+  }
+  &:nth-child(2)::before {
+    width: 2px;
+    content: "";
+    position: absolute;
+
+    transform: translate(-1px, calc(var(--hr-nav-tab-height) - 2px));
+    border-bottom: 1px solid var(--color-gray-100);
+  }
+
+  &:nth-child(2)::after {
+    width: 2px;
+    content: "";
+    position: absolute;
+    transform: translate(calc(var(--hr-nav-tab-width) - 1px), -1px);
+    border-bottom: 1px solid var(--color-gray-100);
+  }
+
+  &:last-child::after {
+    width: calc(var(--hr-nav-tab-width) * 0.5px);
+
+    content: "";
+    position: absolute;
+    transform: translate(calc(var(--hr-nav-tab-width) - 1px), -1px);
+    border-bottom: 1px solid var(--color-gray-100);
+
+    padding: 0 0.5rem;
+  }
+}

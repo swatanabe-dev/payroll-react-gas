@@ -1,0 +1,58 @@
+.form-row {
+  width: 100%;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  /* Don't delete the 'border:' below, deleting it results in shifting elements on hover*/
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+
+  .form-row__input-label {
+    font-size: 0.7rem;
+    position: absolute;
+    z-index: 220;
+    top: -0.5rem;
+    left: 1rem;
+    background-color: var(--main-background-color);
+  }
+
+  .form-row__input-wrapper {
+    .date-picker {
+      position: relative;
+      background-image: url("../assets/date-picker.png");
+      background-position: 97%;
+      background-size: 0.875rem;
+      background-repeat: no-repeat;
+      &::-webkit-calendar-picker-indicator {
+        width: auto;
+        height: auto;
+        position: absolute;
+        inset: 0;
+
+        z-index: 300;
+        color: transparent;
+        background: transparent;
+        cursor: pointer;
+      }
+    }
+    .dropdown-select {
+      background-image: url("../assets/down-arrow.png");
+      background-position: 97%;
+      background-size: 0.875rem;
+      background-repeat: no-repeat;
+    }
+  }
+  &:hover {
+    border: 1px solid var(--color-blue-500);
+  }
+
+  &:focus:hover {
+    border: 1px solid transparent;
+  }
+
+  .form-row__form-error-message {
+    color: var(--color-red-500);
+  }
+}

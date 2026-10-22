@@ -1,0 +1,117 @@
+.work-summary {
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  gap: 1rem;
+
+  border: 1px solid var(--border-color-light);
+  border-radius: var(--border-radius);
+
+  overflow: hidden;
+
+  padding: 1rem;
+
+  .work-summary__stats {
+    height: 6.25rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    .work-summary__total {
+      display: flex;
+      align-items: flex-end;
+
+      .work-summary__total-label {
+        color: var(--sub-font-color);
+      }
+
+      .work-summary__total-value {
+        display: flex;
+        align-items: flex-end;
+
+        padding-left: 1.2rem;
+
+        .work-summary__total-number {
+          font-size: 1.9rem;
+
+          transform: translateY(3.6px);
+          padding-right: 0.1rem;
+        }
+
+        /* .work-summary__unit,
+        .breakdown-list__unit {
+          font-size: 14px;
+        } */
+      }
+    }
+
+    /* F */
+    .work-summary__breakdowns-container {
+      height: 100%;
+
+      border-left: 1px solid var(--border-color-light);
+
+      display: flex;
+
+      /* overflow-y: auto; */
+      overflow: scroll;
+
+      .work-summary__breakdowns {
+        width: 100%; /*<- need this width*/
+
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        &.work-summary__breakdowns--centered {
+          justify-content: center;
+        }
+        gap: 0.4rem;
+
+        padding: 0 1rem;
+
+        /* background-color: blue; */
+
+        .breakdown-list__item {
+          width: 100%;
+
+          display: grid;
+          grid-template-columns: minmax(auto, max-content) 1fr;
+          align-items: center;
+          gap: 0.5rem;
+
+          .breakdown-list__label {
+            color: var(--sub-font-color);
+          }
+
+          .breakdown-list__value {
+            font-weight: 500;
+            white-space: nowrap;
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
+
+  .work-summary__watermark {
+    position: absolute;
+    top: 80px;
+    right: -10px;
+    z-index: -1;
+
+    opacity: 0.25;
+    scale: 1.5;
+
+    img {
+      pointer-events: none;
+    }
+  }
+}
+
+.work-summary__unit,
+.breakdown-list__unit {
+  color: var(--sub-font-color);
+  margin-left: 0.1rem;
+}

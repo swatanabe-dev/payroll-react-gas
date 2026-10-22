@@ -1,0 +1,30 @@
+.status {
+  /* width: fit-content; */
+  /* text-align: center; */
+  /* to use "ellipsis" it needs to be a block element */
+  /* display: flex;
+  justify-content: center; */
+
+  border-radius: var(--border-radius-round);
+
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+
+  padding: 0.2rem 1.2rem;
+  margin: 0 auto;
+
+  &.status--pending {
+    color: #fffcf7;
+    background-color: var(--color-orange-500);
+    border: 1px solid var(--color-range-400);
+  }
+
+  &.status--completed {
+    color: #fefffd;
+    background-color: var(--color-green-500);
+    border: 1px solid var(--color-green-400);
+  }
+}
+
+/*  #f59206; #90c21e;*/

@@ -1,0 +1,103 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .dots {
+    height: 2rem;
+    width: 4rem;
+    display: grid;
+    align-items: end;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.525rem;
+    padding-bottom: 0.5rem;
+
+    .dot {
+      width: 0.3125rem;
+      height: 0.3125rem;
+      border-radius: 1.5rem;
+
+      transform-origin: bottom center;
+
+      animation: jumping 1.5s ease-in-out infinite;
+      animation-delay: calc(0.3s * var(--i));
+
+      margin: 0 auto;
+
+      will-change: transform;
+
+      &:nth-child(1) {
+        background-color: var(--color-green-500);
+      }
+      &:nth-child(2) {
+        background-color: var(--color-blue-300);
+      }
+      &:nth-child(3) {
+        background-color: var(--color-red-500);
+      }
+      &:nth-child(4) {
+        background-color: var(--color-orange-500);
+      }
+      &:nth-child(5) {
+        background-color: var(--color-blue-500);
+      }
+    }
+  }
+}
+
+.stack {
+  min-height: 18rem;
+}
+
+.stack-sm {
+  width: 21.875rem;
+  height: 7.7188rem;
+}
+
+.inline {
+  min-height: none;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.inline-left {
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1.2rem;
+  padding: 2rem 0.5rem;
+}
+
+@keyframes jumping {
+  0%,
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+  15%,
+  20% {
+    /* Anticipation squish: Flatter and slightly wider */
+    transform: translateY(0) scale(2, 0.5);
+  }
+  25% {
+    /* Stretch up: Less horizontal squeezing keeps the tips rounder */
+    transform: translateY(0) scale(0.8, 1.4);
+  }
+  50%,
+  60% {
+    /* Peak of the jump: Maintain the softer stretch */
+    transform: translateY(-1.35rem) scale(0.8, 1.45);
+  }
+  68% {
+    /* Land back on the ground */
+    transform: translateY(0) scale(1, 1);
+  }
+  75%,
+  80% {
+    /* Impact squish: Flatter and slightly wider */
+    transform: translateY(0) scale(1.2, 0.5);
+  }
+  90% {
+    /* Recover to normal shape before resting */
+    transform: translateY(0) scale(1, 1);
+  }
+}

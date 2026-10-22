@@ -1,0 +1,21 @@
+.authorization {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.45rem;
+
+  background-color: var(--main-background-color);
+  border-radius: var(--border-radius);
+  padding: 2rem 2.5rem 2.5rem;
+
+  .authorization__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.45rem;
+
+    .authorization__actions {
+      display: flex;
+      gap: 1.25rem;
+    }
+  }
+}

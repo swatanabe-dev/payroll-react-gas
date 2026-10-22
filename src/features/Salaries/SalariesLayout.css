@@ -1,0 +1,47 @@
+.salaries-layout__table {
+  min-height: 0; /* NEVER EVER FORGET THIS!!! */
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+
+  margin-top: 1.5rem;
+
+  .salaries-layout__table-header {
+    display: flex;
+    justify-content: space-between;
+
+    .salaries-layout__table-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .salaries-layout__table-descriptions {
+        color: var(--sub-font-color);
+        font-size: 0.875rem;
+
+        padding-left: 0.2rem;
+      }
+    }
+    .salaries-layout__payslip-btns {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+  }
+}
+
+.salaries-layout__no-data {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  border: 1px solid var(--border-color-light);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+
+  .salaries-layout__no-data-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8125rem;
+  }
+}

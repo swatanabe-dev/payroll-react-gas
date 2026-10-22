@@ -1,0 +1,26 @@
+.salaries-dropdown {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.5rem;
+
+  .salaries-dropdown__select {
+    width: fit-content;
+
+    background-image: url("../../assets/down-arrow.png");
+    background-position: 92%;
+    background-size: 0.875rem;
+    background-repeat: no-repeat;
+
+    padding: 0.7rem 2.5rem 0.7rem 1.2rem;
+  }
+}
+
+.salaries-dropdown__no-data {
+  display: flex;
+  gap: 0.5rem;
+  .salaries-dropdown__no-data-text {
+    color: var(--color-red-600);
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,45 @@
+.refresh-button {
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: none;
+  margin: 0 auto;
+
+  &:focus-visible {
+    outline: none;
+    border-radius: var(--border-radius);
+  }
+
+  .refresh-button__stacked-icons {
+    position: relative;
+    width: 1.125rem;
+    height: 1.125rem;
+    transition: transform 0.2s ease;
+
+    img {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      object-fit: contain;
+      transform: scaleX(-1);
+
+      transition: opacity 0.2s ease-in-out;
+    }
+    .refresh-button__gif-icon {
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    .refresh-button__static-icon {
+      opacity: 0;
+    }
+    .refresh-button__gif-icon {
+      opacity: 1;
+    }
+  }
+}

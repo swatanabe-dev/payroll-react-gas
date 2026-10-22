@@ -1,0 +1,201 @@
+.prize-table-container {
+  height: 48vh;
+  overflow: scroll;
+  scroll-snap-type: both mandatory;
+
+  scrollbar-width: 0.1875rem;
+
+  &::-webkit-scrollbar {
+    width: 0.1875rem;
+    height: 0.5rem;
+
+    background: transparent;
+  }
+  /* Scrollbar handle */
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+  }
+  &:hover::-webkit-scrollbar {
+    scrollbar-gutter: stable both-edges;
+  }
+  /* Show scrollbar on hover */
+  &:hover::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  /* Darker on hover */
+  &:hover::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .prize-table {
+    border-collapse: collapse;
+  }
+
+  &:hover {
+    .prize-table-header-row {
+      box-shadow: var(--table-scroll-bottom-shadow);
+    }
+    .prize-th.sticky::before,
+    .prize-td.sticky::before {
+      box-shadow: var(--table-scroll-right-shadow);
+    }
+    .prize-th.sticky-last-col::before,
+    .prize-td.sticky-last-col::before {
+      box-shadow: var(--table-scroll-left-shadow);
+    }
+  }
+}
+.prize-thead {
+  /* letter-spacing: 0.06rem; */
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.prize-table-header-row,
+.prize-table-body-row {
+  display: grid;
+  grid-template-columns: 7rem repeat(12, 5rem);
+  align-items: center;
+  justify-items: start;
+}
+
+.prize-th,
+.prize-td {
+  width: 100%;
+  height: 100%;
+}
+
+.prize-table-header-row {
+  .prize-th {
+    font-weight: normal;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    border-top: 1px solid var(--color-gray-200);
+    border-bottom: 1px solid var(--color-gray-200);
+
+    padding: var(--grid-padding);
+
+    .prize-th-year {
+      font-size: 0.5rem;
+      color: var(--color-gray-400);
+    }
+    &:first-child {
+      border: none;
+    }
+    &:last-child {
+      border: none;
+    }
+  }
+}
+
+.prize-table-header-row.sticky,
+.prize-table-body-row.sticky {
+  position: sticky;
+  top: -1px;
+  z-index: 1;
+  background: var(--main-background-color);
+}
+
+.prize-th.sticky,
+.prize-td.sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  /* this background effectively conceals the border line visible under the rounded corner (top left) */
+  background: var(--main-background-color);
+}
+.prize-th.sticky-last-col,
+.prize-td.sticky-last-col {
+  position: sticky;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  /* this background & border settings effectively conceal the border line visible under the rounded corner (top left) */
+  background: var(--main-background-color);
+  border: none;
+}
+
+.prize-th.sticky::before {
+  /* Everything here is to fix the issue that sticky header slightly shifts when scrolling horizontally  */
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-left: 1px solid var(--color-gray-200);
+  border-top: 1px solid var(--color-gray-200);
+  border-bottom: 1px solid var(--color-gray-200);
+  border-top-left-radius: 5px;
+}
+
+.prize-th.sticky-last-col::before {
+  /* Everything here is to fix the issue that sticky header slightly shifts when scrolling horizontally  */
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  border-right: 1px solid var(--color-gray-200);
+  border-top: 1px solid var(--color-gray-200);
+  border-bottom: 1px solid var(--color-gray-200);
+  border-top-right-radius: 5px;
+}
+
+.prize-td.sticky::before {
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  border-left: 1px solid var(--color-gray-200);
+  background-color: var(--main-background-color);
+
+  border-top: 1px solid var(--color-gray-50);
+  border-right: none;
+  border-bottom: 1px solid var(--color-gray-50);
+  border-left: 1px solid var(--color-gray-50);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.prize-th.sticky-last-col::before,
+.prize-td.sticky-last-col::before {
+  /* Everything here is to fix the issue that sticky header slightly shifts when scrolling horizontally  */
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0px;
+  z-index: -1;
+  background-color: #fffefc;
+}
+
+.prize-th.sticky-last-col::before {
+  /* Everything here is to fix the issue that sticky header slightly shifts when scrolling horizontally  */
+  border-right: 1px solid var(--color-gray-200);
+  border-top: 1px solid var(--color-gray-200);
+  border-bottom: 1px solid var(--color-gray-200);
+  border-top-right-radius: 5px;
+}
+
+.prize-td.sticky-last-col::before {
+  /* Everything here is to fix the issue that sticky header slightly shifts when scrolling horizontally  */
+  border-top: 1px solid var(--color-gray-50);
+  border-right: 1px solid var(--color-gray-50);
+  border-bottom: 1px solid var(--color-gray-50);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
