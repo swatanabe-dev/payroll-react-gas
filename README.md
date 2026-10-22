@@ -347,9 +347,11 @@ const values = rows.map((r) => [r.value]);
 range.setValues(values);
 ```
 
-Same applies to reads: pull the full range with `.getDataRange().getValues()` (or a scoped range if you don't need the whole sheet) once, then work with the in-memory array. Don't call `.getRange(...).getValue()` per cell.
+Same applies to reads:
 
-Although I haven't tested how fast `.getDataRange().getValues()` is, the most online resources recommends to use this combination.
+Pull the full range with `.getDataRange().getValues()` (or a scoped range if you don't need the whole sheet) once, then work with the in-memory array. Don't call `.getRange(...).getValue()` per cell.
+
+Although I haven't tested how fast `.getDataRange().getValues()` is, the online resources recommend to use this combination.
 <br/>
 
 **2. Date format mismatch (Date Shift): React Hook Form ↔ GAS**
