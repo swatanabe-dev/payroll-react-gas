@@ -53,18 +53,22 @@ A payroll processing web application for a small business. Handles daily work ho
 ### Core Components
 
 - **Frontend:**
+
   Built with React, TanStack Query, and React Hook Form. Uses `HashRouter` to manage client-side routing within the sandboxed `iframe` environment built in Google Apps Script Web App deployments.
   <br/>
 
 - **Backend:**
+
   Serverless Google Apps Script endpoints act as an API controller layer, managed and deployed locally using Google's `clasp` CLI.
   <br/>
 
 - **Data store:**
+
   Google Sheets serves as a relational datastore per instance, queried directly using the native `SpreadsheetApp` API. Ensure to read [GAS-Specific Gotchas](#gas-specific-gotchas-read-before-touching-backend-code) for important notes on the native functions/methods.
   <br/>
 
 - **Performance & Caching:**
+
   Google Apps Script’s `CacheService` was considered to mitigate API execution limits and optimize latency for heavy payload reads (such as paginated worklog queries). See [Considered Alternatives](#considered-alternatives) for details.
 
 ## Why this stack
@@ -152,6 +156,7 @@ clasp login
 #### 3. Initialize a new Apps Script project
 
 3-1. **Create a sheet file that hosts the app (Apps Script)**
+
 The following command creates a new Google Sheets instance and should automatically create `.clasp.json` in the project folder.
 
 ```bash
@@ -161,6 +166,7 @@ clasp create --title "my-sheet-title" --type sheets
 ```
 
 3-2. **Set up `.clasp.json` file**
+
 In VS Code, open .clasp.json and ensure that it's been set up as shown below.
 
 ```json
@@ -172,6 +178,7 @@ In VS Code, open .clasp.json and ensure that it's been set up as shown below.
 ```
 
 **Where to find these IDs?**
+
 In your browser, log into your private Google account and create a brand new Google Sheet.
 
 - Look at the URL and copy the `Sheet ID` (the long string of characters between /d/ and /edit).
@@ -196,6 +203,7 @@ clasp push -f
 #### 5. Staging & Deployment
 
 **Testing deployments locally**
+
 Before deploying to production, verify your build.
 
 ```bash
@@ -216,6 +224,7 @@ npm run test-ui
 #### 6. Deploy to "Production"
 
 - **6-1. List existing deployments**
+
   Review current deployment IDs and versions.
 
 ```bash
@@ -225,10 +234,12 @@ clasp deployments
 ```
 
 - **Hint**
+
   `clasp deployments` shows two types: @HEAD and @_Version Number_ (e.g. @1, @14). The ID with `@HEAD` reflects the latest push for the test deployment (URL ending with /dev). The numbered version is for production (URL ending with /exec).
   <br/>
 
 - **6-2 Deploy to an ID**
+
   Deploy your updated build to your live production deployment ID.
 
 ```bash
@@ -273,9 +284,11 @@ Below is an example of `.appsscript.json`. Check `oauthScopes` and configure as 
 ```
 
 **`access` and `executeAs` options**
+
 Ensure to check the [official document](https://developers.google.com/apps-script/manifest/web-app-api-executable)
 
 - **`access`**
+
   Web app execution permission levels. Valid settings include:
   - **MYSELF**: Only the deploying user can run the app.
   - **DOMAIN**: Only users in the same domain as the deployer can run it.
@@ -284,6 +297,7 @@ Ensure to check the [official document](https://developers.google.com/apps-scrip
     <br/>
 
 - **`executeAs`**
+
   The identity under which the web app executes. Valid settings include:
   - **USER_ACCESSING**: The web app runs as the user accessing it.
   - **USER_DEPLOYING**: The web app runs as the user who deployed it.
@@ -293,13 +307,17 @@ Ensure to check the [official document](https://developers.google.com/apps-scrip
 Since this payroll application handles sensitive employee compensation data, strict access control and privacy practices must be enforced:
 
 - **Web App Execution (`access`):**
+
   Set to `"MYSELF"` in `.appsscript.json` to ensure only the account owner/deployer can execute the application endpoint.
   <br/>
+
 - **Spreadsheet & Drive Access:**
+
   Restrict Google Sheet permissions and generated PDF output folders exclusively to authorized HR/payroll personnel. **Avoid setting link sharing to "Anyone with the link"**.
   <br/>
 
 - **OAuth Scopes:**
+
   Keep scopes **minimal** (`https://www.googleapis.com/auth/drive` and `https://www.googleapis.com/auth/spreadsheets`). If scope requirements change, update `.appsscript.json` and re-deploy.
 
 ---
@@ -310,7 +328,9 @@ These are runtime/platform quirks specific to Apps Script + Sheets that aren't o
 <br/>
 
 **1. Batch reads and writes — NEVER read/write inside a loop**
+
 Think of `SpreadsheetApp` methods (e.g. .getValue(), getLastRow(), and etc...) as **network requests**.
+
 Even though Apps Script lets you write code that looks like standard line-by-line synchronous JavaScript, it hides a massive bottleneck.
 
 Every single `.getValue()` or `.setValue()`, for instance, is a hidden API request (RPC) traveling across a network to Google’s database. Calling these inside a for loop forces your script to stop, send a network request, wait for a response, and unfreeze for every single iteration. To avoid hitting execution timeouts, always use `.getValues()` and `.setValues()` to batch your reads and writes into a single network trip before and after your loops.
@@ -333,6 +353,7 @@ Although I haven't tested how fast `.getDataRange().getValues()` is, the most on
 <br/>
 
 **2. Date format mismatch (Date Shift): React Hook Form ↔ GAS**
+
 GAS returns `Date` objects (or Sheets' internal date serials) from `getValues()`. React Hook Form's date inputs expect ISO strings (`yyyy-MM-dd`) or `Date` objects depending on how the field is registered. Serializing a GAS `Date` straight into JSON and expecting the frontend to parse it correctly is a common source of off-by-one-day bugs (usually timezone-related — GAS dates are in the script's timezone, not necessarily the client's).
 
 Convention used in this project: for the GAS side code, I created a helper function `formatDataNative_(value)` in `util.gs`.
@@ -362,6 +383,7 @@ NOTE that `Utilities.formatDate(date, scriptTimeZone, "yyyy-MM-dd")`) on the GAS
 <br/>
 
 **3. getValues() vs getDisplayValues()**
+
 Check the [official methods](https://developers.google.com/apps-script/reference/spreadsheet/range) as well.
 
 | Method               | Return type  | Brief description                                                |
@@ -372,13 +394,16 @@ Check the [official methods](https://developers.google.com/apps-script/reference
 <br/>
 
 **4. The trailing underscore\_() rules**
+
 In Google Apps Script, adding a trailing underscore to a function name (e.g., syncRewards\_) tells Google to make that function private.
 <br/>
 
 **5. Deal concurrency**
+
 For all GAS side mutation functions, ensure to wrap with the `withScriptLock_()` function in the `util.gs` file. It tries to deal with a racing condition using the GAS native `LockService.getScriptLock()`.
 
 **6. Handling an empty sheet returned by `getValues()`**
+
 `getValues()` returns `[[""]]` when the sheet is empty. In Javascript, `[[""]].length` is **1**.
 
 ---
@@ -386,6 +411,7 @@ For all GAS side mutation functions, ensure to wrap with the `withScriptLock_()`
 ## Other Notes
 
 **1. TanStack Query `staleTime` vs `gcTime`.**
+
 `staleTime` controls when data is considered stale and eligible for a background refetch; `gcTime` controls when unused cached data is garbage-collected. Confusing the two caused unexpected refetches in this project — if a query seems to refetch more (or less) often than expected, check `staleTime` first, not `gcTime`. The app sets these two globally in App.jsx as well as in local query Hook. I set `gcTime` slightly longer than `staleTime`, or can be equal durations.
 
 **2. Separates headers and data rows when reading an entire sheet**
@@ -402,6 +428,7 @@ const [headers, ...rows] = data; // new array in memory
 ```
 
 **3. `gas-client` local dev setting not working**
+
 Unfortunately, the localhost dev env setups didn't work out after having tested a few different approaches.
 So, stick with "npm run build && clasp push"
 
@@ -424,11 +451,13 @@ const { serverFunctions } = new GASClient({
 This section should serve as a note for future improvements/implementations. These would come in handy if the client's use changes down the road. Below are some alternative approaches that were considered or tested in the current project, but it was decided otherwise.
 
 **1. CacheService ~100KB per-key limit.**
+
 Large datasets (e.g. full worklogs history) will silently fail or truncate if you try to cache them under a single key. Chunk into multiple keys or paginate at the source instead of caching the full dataset.
 
 This was considered in an attempt to make pagination calls faster. After considering the actual usage flow with the current 100 rows per page, I concluded the speed would be fast enough and implementing this approach would simply add unnecessary complexity.
 
 **2. `window.location.reload()` breaks inside the GAS iframe sandbox.**
+
 GAS serves the app inside a sandboxed iframe. A plain `window.location.reload()` reloads the iframe in a broken state (blank page). Use `window.top.location.reload()`, or prefer `queryClient.resetQueries()` from TanStack Query to refresh data without a full page reload.
 
 I considered this approach, since quite a few `queryKey` data needed to be invalidated and refetched after the previous fiscal year data were archived. To ensure that all local data, which need to be fresh, are fresh, I initially tried to programmatically reload a browser, and noticed that the conventional `window.location.reload()` would not work due to a sandbox iframe environment.
@@ -450,14 +479,17 @@ Browser's `window.top.location.reload()` and Tanstack Query's `queryClient.reset
 **2. Browser hang during bulk PDF generation (15+ pages)**
 
 - **Status: Fixed** (Temporary)
+
   _This PDF generation issue has been taken care of. The app correctly generates PDF files for any batch size. However, further investigation would be necessary if it resurfaces._
   <br/>
 
 - **Symptom:**
+
   The PDF generation feature built with `@react-pdf/renderer` was initially working fine, but the issue suddenly surfaced on August 3, 2026. During bulk PDF generation (roughly 15+ pages), the browser tab became unresponsive for a period and then reloaded on its own. After this, the "Save File" prompted and the contents of the generated PDF were accurate. When generating less than 15 pages, the process was noticeably slow but generated without being unresponsive.
   <br/>
 
 - **Context:**
+
   PDFs are generated client-side and the app runs inside a sandboxed iframe. `@react-pdf/renderer` does not support Japanese fonts out of the box.
   <br/>
 
@@ -474,21 +506,25 @@ Browser's `window.top.location.reload()` and Tanstack Query's `queryClient.reset
     <br/>
 
 - **Inference:**
+
   Unfortunately, the exact causes or mechanisms could not be identified. However, the most likely explanation is that a certain request relating to the PDF generation process were sent faster and more than the main thread could process, eventually starving the event loop and causing the hang. The reload was most likely triggered by the browser (or possibly by the hosting env) reacting to the unresponsive/memory-chocking tab. The fact that the app runs inside a Google Apps Script sandboxed iframe would be something for us to keep in mind when developing and debugging.
   <br/>
 
 - **Fix / Workaround:**
+
   Mitigated by batching at 10 pages per PDF file with a 1.5 second interval. The exact mechanism is not fully confirmed. The fix/workaround was implemented based on observed behavior and inference.
   <br/>
 
 - **If this resurfaces:**
+
   If freezing returns even with batching (e.g. after the office's staff count grows significantly, or per-payslip content becomes denser), try lowering MAX_PAYSLIPS_PER_FILE in generatePayslipsPDF.jsx before assuming something else broke. One thing worth checking is if there's a more appropriate way to integrate Japanese font in generating PDFs with `@react-pdf/renderer`.
 
 - **Update:**
+
   Removing Japanese font imports improved the PDF generation speed significantly.
 
 ---
 
 ## Support
 
-For bugs, contact Sho at shotaro.d.watanabe@gmail.com.
+For bugs, contact Sho at shotaro.d.watanabe [at] gmail [dot] com.
