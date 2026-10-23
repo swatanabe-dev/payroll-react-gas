@@ -6,6 +6,8 @@ A payroll processing web application for a small business. Handles daily work ho
 
 ## Demo
 
+Demo version of the app. **All data and business name are fictional.**
+
 - [App overview](https://drive.google.com/file/d/1KZZIPlQP6IAp817E0gA-rP0nmaL1tdoY/view?usp=sharing) (2:30)
 - [Generating PDF in batches](https://drive.google.com/file/d/1-kTAGNA82oHG1_XSF8gfEW4h_rcHP6gM/view?usp=sharing) (1:26)
 - [Generating PDF](https://drive.google.com/file/d/1Mmg0H2FeHKS1qhoLz2LX3SbIMMGFD2qk/view?usp=sharing) (1:50)
@@ -83,7 +85,7 @@ Deployed within the GAS environment, the app requires no server to host or maint
 
 > 🔒 **Security & Data Privacy Notice:**
 >
-> Because this application processes sensitive employee salary data, the web app execution `access` configuration in `.appsscript.json` is set to `"MYSELF"`. Ensure that access to the underlying Google Sheet and any Drive folders storing generated payslips is strictly restricted to authorized administrative personnel.
+> Because this application processes sensitive employee salary data, the web app execution `access` configuration in `appsscript.json` is set to `"MYSELF"`. Ensure that access to the underlying Google Sheet and any Drive folders storing generated payslips is strictly restricted to authorized administrative personnel.
 >
 > Read [appsscript.json](#appsscriptjson) section for more details.
 
@@ -144,7 +146,7 @@ This project uses `@google/clasp` (Command Line Apps Script Projects) to manage 
 
 ```bash
 # Log out
-# This step is option in case you've been working on a GAS app via clasp.
+# This step is optional in case you've been working on a GAS app via clasp.
 clasp logout
 
 # Log in
@@ -260,9 +262,9 @@ clasp deploy -d "Another build"
 
 ---
 
-## `.appsscript.json`
+## `appsscript.json`
 
-Below is an example of `.appsscript.json`. Check `oauthScopes` and configure as shown. This is needed to enable the archiving feature (when creating a file copy).
+Below is an example of `appsscript.json`. Check `oauthScopes` and configure as shown. This is needed to enable the archiving feature (when creating a file copy).
 
 ```json
 // Note that the "timeZone" has been changed from the original.
@@ -308,7 +310,7 @@ Since this payroll application handles sensitive employee compensation data, str
 
 - **Web App Execution (`access`):**
 
-  Set to `"MYSELF"` in `.appsscript.json` to ensure only the account owner/deployer can execute the application endpoint.
+  Set to `"MYSELF"` in `appsscript.json` to ensure only the account owner/deployer can execute the application endpoint.
   <br/>
 
 - **Spreadsheet & Drive Access:**
@@ -318,7 +320,7 @@ Since this payroll application handles sensitive employee compensation data, str
 
 - **OAuth Scopes:**
 
-  Keep scopes **minimal** (`https://www.googleapis.com/auth/drive` and `https://www.googleapis.com/auth/spreadsheets`). If scope requirements change, update `.appsscript.json` and re-deploy.
+  Keep scopes **minimal** (`https://www.googleapis.com/auth/drive` and `https://www.googleapis.com/auth/spreadsheets`). If scope requirements change, update `appsscript.json` and re-deploy.
 
 ---
 
@@ -358,7 +360,7 @@ Although I haven't tested how fast `.getDataRange().getValues()` is, the online 
 
 GAS returns `Date` objects (or Sheets' internal date serials) from `getValues()`. React Hook Form's date inputs expect ISO strings (`yyyy-MM-dd`) or `Date` objects depending on how the field is registered. Serializing a GAS `Date` straight into JSON and expecting the frontend to parse it correctly is a common source of off-by-one-day bugs (usually timezone-related — GAS dates are in the script's timezone, not necessarily the client's).
 
-Convention used in this project: for the GAS side code, I created a helper function `formatDataNative_(value)` in `util.gs`.
+Convention used in this project: for the GAS side code, I created a helper function `formatDateNative_(value)` in `util.gs`.
 
 ```javascript
 /**
@@ -500,7 +502,7 @@ Browser's `window.top.location.reload()` and Tanstack Query's `queryClient.reset
   - The issues persisted on a different browser (Firefox).
   - Old deployments that were previously working now showed the same symptom.
   - Reviewing the related code could not reveal possible causes, but made a minor modifications, such as adding a value fallback, which didn't resolve the issue.
-  - The DevTools Network tab showed rapidly continuously piling up `204 ping` requests util the "Save File" window prompted.
+  - The DevTools Network tab showed rapidly continuously piling up `204 ping` requests until the "Save File" window prompted.
   - When the `204 ping` requests reached 100K or more, the browser reloaded on its own.
   - The hang and the flooding ping occurred together.
   - This behavior was the same with DevTools open and closed.
@@ -527,6 +529,6 @@ Browser's `window.top.location.reload()` and Tanstack Query's `queryClient.reset
 
 ---
 
-## Support
+## Questions or feedback
 
-For bugs, contact Sho at shotaro.d.watanabe [at] gmail [dot] com.
+Open an [issue](https://github.com/swatanabe-dev/payroll-react-gas/issues), or find me on [LinkedIn](https://www.linkedin.com/in/profile-swatanabe/).
