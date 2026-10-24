@@ -578,7 +578,7 @@ Browser's `window.top.location.reload()` and Tanstack Query's `queryClient.reset
 
 ---
 
-## Questions or feedback
+## Questions or Feedback
 
 Open an [issue](https://github.com/swatanabe-dev/payroll-react-gas/issues), or find me on [LinkedIn](https://www.linkedin.com/in/profile-swatanabe/).
 
