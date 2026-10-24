@@ -27,8 +27,8 @@ function processMultiplePayslips(userIds, year, month) {
       const allRewards = syncRewards_(gs, year, month); // { [userId]: { month, prizes, bonuses } }
 
       // ── 2. Index lookups ──────────────────────────────────────────────────
-      // O(1) user lookup by uuid
-      const usersMap = new Map(allUsers.map((user) => [user.uuid, user]));
+      // O(1) user lookup by userId
+      const usersMap = new Map(allUsers.map((user) => [user.userId, user]));
 
       // O(1) hourly wage lookup by workType
       const wagesMap = new Map(
@@ -285,7 +285,7 @@ function calculatePayslipData_({
   const net = grossTotal - deductionsTotal;
 
   return {
-    userId: user.uuid,
+    userId: user.userId,
     payeeName: `${user.firstName} ${user.lastName}`,
     isNewUser,
 

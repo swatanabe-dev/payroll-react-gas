@@ -25,7 +25,7 @@ function UsersTable() {
   const tableSchema = usersTableSchema;
 
   function handleClickRow(user) {
-    navigate(`/users/${user.uuid}`, { replace: false });
+    navigate(`/users/${user.userId}`, { replace: false });
   }
 
   if (isPending)

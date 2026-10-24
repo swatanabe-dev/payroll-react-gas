@@ -57,7 +57,7 @@ function UserForm({ userInfoToEdit = {} }) {
     if (modal?.type === "USER_EDIT") {
       updateUser(
         {
-          uuid: userInfoToEdit?.uuid,
+          userId: userInfoToEdit?.userId,
           firstName,
           lastName,
           dob,

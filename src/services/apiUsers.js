@@ -12,7 +12,7 @@ import { serverFunctions } from "./gasClient";
  * @param {'Deposit'|'Cash'} params.paymentMethod - The user's preferred payment method.
  * @param {string} params.dateJoined - The date the user joined (expected as "YYYY-MM-DD").
  * @param {string} [params.memo] - An optional internal note or comment about the user.
- * @returns {Promise<any>} A promise that resolves to the data returned by the server (e.g., the new user's UUID).
+ * @returns {Promise<any>} A promise that resolves to the data returned by the server (e.g., the new user's USERID).
  * @throws {Error} Throws an error if the server request fails and the user cannot be added.
  */
 export async function addUser({
@@ -85,7 +85,7 @@ export async function getUsersForDropdown() {
 
 // ─── UPDATE: updateUser ─────────────────────────────────────────────────────────────
 export async function updateUser({
-  uuid,
+  userId,
   firstName,
   lastName,
   dob,
@@ -97,7 +97,7 @@ export async function updateUser({
 }) {
   try {
     await serverFunctions.updateUser({
-      uuid,
+      userId,
       firstName,
       lastName,
       dob,
@@ -115,9 +115,9 @@ export async function updateUser({
   }
 }
 
-export async function deleteUser(uuid) {
+export async function deleteUser(userId) {
   try {
-    await serverFunctions.deleteUser(uuid);
+    await serverFunctions.deleteUser(userId);
     return true;
   } catch (error) {
     console.error(error);

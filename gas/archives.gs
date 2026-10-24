@@ -158,7 +158,7 @@ function purgePrevFyData({ archiveId, targetFY, authorizedBy }) {
             const header = data[0];
             const rows = data.slice(1);
 
-            const uuidIdx = header.indexOf("uuid");
+            const userIdIdx = header.indexOf("userId");
             const dateLeftIdx = header.indexOf("dateLeft");
 
             const remainingRows = rows.filter((row) => {
@@ -168,7 +168,7 @@ function purgePrevFyData({ archiveId, targetFY, authorizedBy }) {
                 dateLeft &&
                 String(getFyFromDate_(dateLeft)) === targetFYStr
               ) {
-                deletedUserIds.add(row[uuidIdx]);
+                deletedUserIds.add(row[userIdIdx]);
                 return false; // Remove row
               }
               return true; // Keep row

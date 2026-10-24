@@ -59,12 +59,12 @@ function addUser({
       );
     }
 
-    const uuid = Utilities.getUuid();
+    const userId = Utilities.getUuid();
     const dateLeft = "";
     const now = new Date().toISOString();
 
     ws.appendRow([
-      uuid,
+      userId,
       trimmedFirstName,
       trimmedLastName,
       trimmedDob,
@@ -77,7 +77,7 @@ function addUser({
       now,
     ]);
 
-    return uuid;
+    return userId;
   });
 }
 
@@ -196,7 +196,7 @@ function getUserDetails(userId) {
     // Cleaning headers
     const headers = data.shift().map((header) => header?.toString().trim());
 
-    const userIdIndex = headers.indexOf("uuid");
+    const userIdIndex = headers.indexOf("userId");
     if (userIdIndex === -1) return null;
 
     const targetId = String(userId).trim();
@@ -244,22 +244,21 @@ function getUsersForDropdown() {
     if (data.length < 2) return null;
 
     const headers = data[0];
-    const uuidIdx = headers.indexOf("uuid");
+    const userId = headers.indexOf("userId");
     const firstNameIdx = headers.indexOf("firstName");
     const lastNameIdx = headers.indexOf("lastName");
 
-    if (uuidIdx === -1 || firstNameIdx === -1 || lastNameIdx === -1)
-      return null;
+    if (userId === -1 || firstNameIdx === -1 || lastNameIdx === -1) return null;
 
     const users = [];
 
     for (let i = 1; i < data.length; i++) {
       const row = data[i];
 
-      if (!row[uuidIdx]) continue;
+      if (!row[userId]) continue;
 
       users.push({
-        uuid: row[uuidIdx],
+        userId: row[userId],
         firstName: row[firstNameIdx],
         lastName: row[lastNameIdx],
       });
@@ -274,7 +273,7 @@ function getUsersForDropdown() {
  * Updates an existing user profile in the spreadsheet by UUID.
  *
  * @param {Object} userObj - The user update details
- * @param {string} userObj.uuid - The unique ID of the user to update
+ * @param {string} userObj.userId - The unique ID of the user to update
  * @param {string} userObj.firstName - The user's first name
  * @param {string} userObj.lastName - The user's last name
  * @param {string} userObj.dob - The user's date of birth ('YYYY-MM-DD')
@@ -284,11 +283,11 @@ function getUsersForDropdown() {
  * @param {string} [userObj.dateLeft] - An optional date when the user left ('YYYY-MM-DD')
  * @param {string} [userObj.memo] - An optional internal note or comment
  * @returns {boolean} Returns `true` if the update succeeded
- * @throws {Error} If required inputs are missing/invalid or the user UUID is not found
+ * @throws {Error} If required inputs are missing/invalid or the user USERID is not found
  *
  * @example
  * updateUser({
- *   uuid: '123e4567-e89b-12d3-a456-426614174000',
+ *   userId: '123e4567-e89b-12d3-a456-426614174000',
  *   firstName: 'Jane',
  *   lastName: 'Doe',
  *   dob: '1990-04-15',
@@ -300,7 +299,7 @@ function getUsersForDropdown() {
  * });
  */
 function updateUser({
-  uuid,
+  userId,
   firstName,
   lastName,
   dob,
@@ -311,7 +310,7 @@ function updateUser({
   memo,
 }) {
   return withScriptLock_("updateUser", (gs) => {
-    const trimmedUuid = String(uuid || "").trim();
+    const trimmedUserId = String(userId || "").trim();
     const trimmedFirstName = String(firstName || "").trim();
     const trimmedLastName = String(lastName || "").trim();
     const trimmedDob = String(dob || "").trim();
@@ -322,7 +321,7 @@ function updateUser({
     const trimmedMemo = String(memo || "").trim();
 
     if (
-      !trimmedUuid ||
+      !trimmedUserId ||
       !trimmedFirstName ||
       !trimmedLastName ||
       !trimmedDob ||
@@ -347,12 +346,12 @@ function updateUser({
     const headers = data[0];
     const rows = data.slice(1);
 
-    // In-memory array search for the uuid
-    const rowIndex = rows.findIndex((row) => String(row[0]) === trimmedUuid);
+    // In-memory array search for the userId
+    const rowIndex = rows.findIndex((row) => String(row[0]) === trimmedUserId);
 
     // Note: findIndex returns -1 if not found a match
     if (rowIndex === -1) {
-      throw new Error(`User ID ${trimmedUuid} not found.`);
+      throw new Error(`User ID ${trimmedUserId} not found.`);
     }
 
     const rowToUpdate = rowIndex + 2;
@@ -385,18 +384,18 @@ function updateUser({
 // ─── DELETE: deleteUser (PUBLIC) ─────────────────────────────────────────────────────────────
 /**
  *
- * @param {string} uuid
+ * @param {string} userId
  * @returns
  */
-function deleteUser(uuid) {
+function deleteUser(userId) {
   return withScriptLock_("deleteUser", (gs) => {
     const ws = gs.getSheetById(SHEET_IDS.USERS);
     const lastRow = ws.getLastRow();
-    const uuids = ws
+    const userIds = ws
       .getRange(2, 1, lastRow - 1, 1)
       .getValues()
       .flat();
-    const idArrayIndex = uuids.indexOf(uuid);
+    const idArrayIndex = userIds.indexOf(userId);
     const sheetRowNumber = idArrayIndex === -1 ? 0 : idArrayIndex + 2;
 
     ws.deleteRow(sheetRowNumber);

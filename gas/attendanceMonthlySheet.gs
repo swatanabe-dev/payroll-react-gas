@@ -183,7 +183,7 @@ function getMonthlyPrizeData(targetYear, targetMonth) {
     // Pivot map with ALL users
     const pivotMap = new Map();
 
-    // Users Sheet: uuid (row 0), firstName (row 1), lastName (row 2)
+    // Users Sheet: userId (row 0), firstName (row 1), lastName (row 2)
     for (let i = 1; i < usersValues.length; i++) {
       const row = usersValues[i];
       const userId = row[0];

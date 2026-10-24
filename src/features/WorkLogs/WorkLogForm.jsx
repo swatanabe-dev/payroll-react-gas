@@ -71,10 +71,10 @@ function WorkLogForm({ logToEdit = {} }) {
             dropdownUsers.map((user) => (
               <option
                 value={JSON.stringify({
-                  userId: user.uuid,
+                  userId: user.userId,
                   name: `${user.firstName} ${user.lastName}`,
                 })}
-                key={user.uuid}
+                key={user.userId}
               >
                 {user.firstName} {user.lastName}
               </option>

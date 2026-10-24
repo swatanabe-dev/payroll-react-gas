@@ -33,7 +33,7 @@ function Table({ fields = [], data = [], onRowClick, isFullWidth = false }) {
           ) : (
             data.map((dataRow, rowIndex) => (
               <tr
-                key={dataRow.uuid ?? dataRow.id ?? rowIndex}
+                key={dataRow.userId ?? dataRow.id ?? rowIndex}
                 onClick={isClickable ? () => onRowClick(dataRow) : undefined}
                 className={`table__row--data ${
                   isClickable ? "table__row--clickable-data" : ""
