@@ -1,6 +1,33 @@
+#### 👋🏼 Welcome!
+
+**Before you explore**
+
+This `README` serves as a personal note for future reference. But, if you explore this repository, any feedback or suggestions for improvement are always **welcome and appreciated**.
+
+If you are building an app with a similar stack and have questions, I'm happy to [connect and build together](#-connect-with-me)!
+
+---
+
 # Payroll App (Demo)
 
-A payroll processing web application for a small business. Handles daily work hours entry, payroll calculation, and PDF payslip generation.
+A payroll processing web application for a small business. Handles daily work hours entry, payroll calculation, PDF payslip generation and more.
+
+---
+
+## Table of Contents
+
+- [Demo](#demo)
+- [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
+- [Project Description](#project-description---why-this-stack)
+- [Local Development](#local-development)
+- [appsscript.json](#appsscriptjson)
+- [GAS-Specific Gotchas](#gas-specific-gotchas-read-before-touching-backend-code)
+- [Other Notes](#other-notes)
+- [Considered Alternatives](#considered-alternatives)
+- [Known Issues / Backlog](#known-issues--backlog)
+- [Questions or Feedback](#questions-or-feedback)
+- [Connect with Me](#-connect-with-me)
 
 ---
 
@@ -11,6 +38,8 @@ Demo version of the app. **All data and business name are fictional.**
 - [App overview](https://drive.google.com/file/d/1KZZIPlQP6IAp817E0gA-rP0nmaL1tdoY/view?usp=sharing) (2:30)
 - [Generating PDF in batches](https://drive.google.com/file/d/1-kTAGNA82oHG1_XSF8gfEW4h_rcHP6gM/view?usp=sharing) (1:26)
 - [Generating PDF](https://drive.google.com/file/d/1Mmg0H2FeHKS1qhoLz2LX3SbIMMGFD2qk/view?usp=sharing) (1:50)
+
+[To top &uarr;](#table-of-contents)
 
 ---
 
@@ -28,6 +57,8 @@ Demo version of the app. **All data and business name are fictional.**
 - **Integration & Utilities:**
   - `gas-client` – Wrapper for Google Apps Script server functions
   - `vite-plugin-node-polyfills` – Node.js module polyfills for Vite
+
+[To top &uarr;](#table-of-contents)
 
 ---
 
@@ -73,7 +104,11 @@ Demo version of the app. **All data and business name are fictional.**
 
   Google Apps Script’s `CacheService` was considered to mitigate API execution limits and optimize latency for heavy payload reads (such as paginated worklog queries). See [Considered Alternatives](#considered-alternatives) for details.
 
-## Why this stack
+[To top &uarr;](#table-of-contents)
+
+---
+
+## Project Description - Why this stack
 
 ### The Issue:
 
@@ -94,6 +129,8 @@ Deployed within the GAS environment, the app requires no server to host or maint
 While the CRUD operations are considered fast enough given the client's app usage, the request processing speed (one roundtrip) tends to be slower than conventional web apps. So **batching** matters more here than in a typical backend.<br/>
 
 Also, GAS has quota and execution limits (e.g., 6 min/execution). Details on quota limits are found in the [official documentation](https://developers.google.com/apps-script/guides/services/quotas).
+
+[To top &uarr;](#table-of-contents)
 
 ---
 
@@ -260,6 +297,8 @@ clasp deploy -d "Another build"
 
 ```
 
+[To top &uarr;](#table-of-contents)
+
 ---
 
 ## `appsscript.json`
@@ -321,6 +360,8 @@ Since this payroll application handles sensitive employee compensation data, str
 - **OAuth Scopes:**
 
   Keep scopes **minimal** (`https://www.googleapis.com/auth/drive` and `https://www.googleapis.com/auth/spreadsheets`). If scope requirements change, update `appsscript.json` and re-deploy.
+
+[To top &uarr;](#table-of-contents)
 
 ---
 
@@ -410,6 +451,8 @@ For all GAS side mutation functions, ensure to wrap with the `withScriptLock_()`
 
 `getValues()` returns `[[""]]` when the sheet is empty. In Javascript, `[[""]].length` is **1**.
 
+[To top &uarr;](#table-of-contents)
+
 ---
 
 ## Other Notes
@@ -448,6 +491,8 @@ const { serverFunctions } = new GASClient({
 });
 ```
 
+[To top &uarr;](#table-of-contents)
+
 ---
 
 ## Considered Alternatives
@@ -467,6 +512,8 @@ GAS serves the app inside a sandboxed iframe. A plain `window.location.reload()`
 I considered this approach, since quite a few `queryKey` data needed to be invalidated and refetched after the previous fiscal year data were archived. To ensure that all local data, which need to be fresh, are fresh, I initially tried to programmatically reload a browser, and noticed that the conventional `window.location.reload()` would not work due to a sandbox iframe environment.
 
 Browser's `window.top.location.reload()` and Tanstack Query's `queryClient.resetQueries()` would properly fix this issue. However, given the use of Tanstack Query throughout, I decided to go for `queryClient.resetQueries()` this time.
+
+[To top &uarr;](#table-of-contents)
 
 ---
 
@@ -527,8 +574,22 @@ Browser's `window.top.location.reload()` and Tanstack Query's `queryClient.reset
 
   Removing Japanese font imports improved the PDF generation speed significantly.
 
+[To top &uarr;](#table-of-contents)
+
 ---
 
 ## Questions or feedback
 
 Open an [issue](https://github.com/swatanabe-dev/payroll-react-gas/issues), or find me on [LinkedIn](https://www.linkedin.com/in/profile-swatanabe/).
+
+---
+
+## 🤝 Connect with Me
+
+If you want to talk about this project, collaborate on a similar stack, or just say hi, feel free to reach out!
+
+[![GitHub](https://shields.io)](https://github.com/swatanabe-dev)
+[![LinkedIn](https://shields.io)](https://www.linkedin.com/in/profile-swatanabe/)
+[![Twitter](https://shields.io)](https://x.com/coding_zamurai)
+
+[To top &uarr;](#table-of-contents)
