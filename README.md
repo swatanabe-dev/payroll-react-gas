@@ -588,6 +588,6 @@ Open an [issue](https://github.com/swatanabe-dev/payroll-react-gas/issues), or f
 
 If you want to talk about this project, collaborate on a similar stack, or just say hi, feel free to reach out!
 
-[![LinkedIn](<(https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)>)](https://www.linkedin.com/in/profile-swatanabe/)&nbsp;&nbsp;[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/swatanabe-dev)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/profile-swatanabe/)&nbsp;&nbsp;[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/swatanabe-dev)
 
 [To top &uarr;](#table-of-contents)
